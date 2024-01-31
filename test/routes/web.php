@@ -26,13 +26,22 @@ use App\Models\User;
 // return 'phuong thuc post cuar path';
 // });
 
-// Route::put('unicode',function(){
-//     return 'phương thức put';
-// });
+
 
 Route::redirect('unicode','show-form');
 
-Route::prefix('url')->group(function(){
+Route::prefix('admin')->group(function(){
+    Route::get('tin-tuc/{slug}-{id}.html',function($slug=null,$id=null){
+        $content = 'phương thức put với tham số ';
+        $content.= 'id = '.$id.'</br>';
+        $content.= 'slug = '.$slug;
+        return $content;
+    })->where(
+        [
+            'slug'=>'[.+]',
+            'id' => '[0-9]+'
+        ]
+    );
     Route::get('show-form',function(){
         return view('form');
     });
