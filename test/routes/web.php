@@ -13,12 +13,38 @@ use App\Models\User;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/unicode',function(){
-     return view('home');
-});
-Route::get('/product',function(){
-    return view('product');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+// Route::get('/unicode',function(){
+//   return view('form');
+// });
+// Route::get('/product',function(){
+//     return view('product');
+// });
+// Route::post('unicode',function(){
+// return 'phuong thuc post cuar path';
+// });
+
+// Route::put('unicode',function(){
+//     return 'phương thức put';
+// });
+
+Route::redirect('unicode','show-form');
+
+Route::prefix('url')->group(function(){
+    Route::get('show-form',function(){
+        return view('form');
+    });
+    Route::prefix('products')->group(function(){
+        Route::get('/',function(){
+            return 'Danh sach san pham';
+        });
+        Route::get('add',function(){
+            return 'Thêm sản phẩm';
+        });
+        Route::get('edit',function(){
+            return 'chỉnh sửa';
+        });
+    });
 });
