@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
+use Illuminate\Http\Request;
+use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,48 +14,18 @@ use App\Models\User;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// client route
+Route::prefix('category')->group(function(){
+    // Danh sách chuyên mục
+    Route::get('/',[CategoryController::class,'index'])->name('category.list');
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-// Route::get('/unicode',function(){
-//   return view('form');
-// });
-// Route::get('/product',function(){
-//     return view('product');
-// });
-// Route::post('unicode',function(){
-// return 'phuong thuc post cuar path';
-// });
+    Route::get('/edit/{id}',[CategoryController::class,'getCategory'])->name('category.edit');;
 
+    Route::post('',[CategoryController::class,'updateCategory']);
 
+    Route::get('/add',[CategoryController::class,'addCategory'])->name('category.add');
 
-Route::redirect('unicode','show-form');
+    Route::post('/add',[CategoryController::class,'showCategory']);
 
-Route::prefix('admin')->group(function(){
-    Route::get('tin-tuc/{slug}-{id}.html',function($slug=null,$id=null){
-        $content = 'phương thức put với tham số ';
-        $content.= 'id = '.$id.'</br>';
-        $content.= 'slug = '.$slug;
-        return $content;
-    })->where(
-        [
-            'slug'=>'[.+]',
-            'id' => '[0-9]+'
-        ]
-    );
-    Route::get('show-form',function(){
-        return view('form');
-    });
-    Route::prefix('products')->group(function(){
-        Route::get('/',function(){
-            return 'Danh sach san pham';
-        });
-        Route::get('add',function(){
-            return 'Thêm sản phẩm';
-        });
-        Route::get('edit',function(){
-            return 'chỉnh sửa';
-        });
-    });
+    Route::delete('/delete/{id}',[CategoryController::class,'deleteCategory']);
 });
