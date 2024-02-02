@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,22 +19,23 @@ use App\Http\Controllers\Admin\DashboardController;
 |
 */
 // client route
-Route::prefix('category')->group(function(){
+Route::get('/', [HomeController::class,'index'])->name('home');
+Route::prefix('category')->group(function () {
     // Danh sách chuyên mục
-    Route::get('/',[CategoryController::class,'index'])->name('category.list');
+    Route::get('/', [CategoryController::class, 'index'])->name('category.list');
 
-    Route::get('/edit/{id}',[CategoryController::class,'getCategory'])->name('category.edit');;
+    Route::get('/edit/{id}', [CategoryController::class, 'getCategory'])->name('category.edit');;
 
-    Route::post('',[CategoryController::class,'updateCategory']);
+    Route::post('', [CategoryController::class, 'updateCategory']);
 
-    Route::get('/add',[CategoryController::class,'addCategory'])->name('category.add');
+    Route::get('/add', [CategoryController::class, 'addCategory'])->name('category.add');
 
-    Route::post('/add',[CategoryController::class,'showCategory']);
+    Route::post('/add', [CategoryController::class, 'showCategory']);
 
-    Route::delete('/delete/{id}',[CategoryController::class,'deleteCategory']);
+    Route::delete('/delete/{id}', [CategoryController::class, 'deleteCategory']);
 });
 
-Route::prefix('admin')->group(function(){
-    Route::get('/',[DashboardController::class,'index']);
-    Route::resource('products',ProductsController::class);
+Route::prefix('admin')->group(function () {
+    Route::get('/', [DashboardController::class, 'index']);
+    Route::resource('products', ProductsController::class);
 });
