@@ -8,6 +8,10 @@ class HomeController extends Controller
 {
     //
     public function index(){
-        
+        return 'Home';
     }
+    public function getNews(){
+        return 'Danh sách tin tức';
+    }
+    
 }
