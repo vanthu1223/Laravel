@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Admin\ProductsController;
+use App\Http\Controllers\Admin\DashboardController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,4 +31,9 @@ Route::prefix('category')->group(function(){
     Route::post('/add',[CategoryController::class,'showCategory']);
 
     Route::delete('/delete/{id}',[CategoryController::class,'deleteCategory']);
+});
+
+Route::prefix('admin')->group(function(){
+    Route::get('/',[DashboardController::class,'index']);
+    Route::resource('products',ProductsController::class);
 });
