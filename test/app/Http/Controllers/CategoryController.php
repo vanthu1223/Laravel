@@ -7,14 +7,44 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     //
-    public function __construct()
+    public function __construct(Request $request)
     {
-        
+       if($request->is('category')){
+            echo 'xin chào';
+       }
+       // Nếu là trang danh sách chuyên mục sẽ hiển thị ra dòng chữ xin chào unicode
     }
     // hiển thị danh sách chuyên mục pt get
-    public function index(){
+    public function index(Request $request){
+        // if (isset($_GET['id'])){
+        //     echo $_GET['id'];
+        // }
+        // $dataRequest = $request->all();
+        // dd($dataRequest);
+        // $path = $request->path();
+        // echo $path;
+        // $url = $request->url();
+        // $fullUrl = $request->fullUrl();
+        // $method = $request->method();
+
+        // $ip = $request->ip();
+        // echo 'ip'.$ip;
+        // $server = $request ->server();
+        // dd($server);
+
+        // $header = $request->header();
+        // dd($header['']);
+
+        // $id = $request->input('id');
+
+        // $input= $request->input();
+        // dd($input);
+
+        $id=$request->input('id.1.name');
+        dd($id);
         return view('clients/category/list');
     }
+    
     // phương thức get
     public function getCategory($id){
         return view('clients/category/edit');
@@ -27,12 +57,13 @@ class CategoryController extends Controller
     return 'submit chyueen mục';
     }
     // Thêm dữ liệu vào chuyên mục phương thức post
-    public function addCategory(){
+    public function addCategory(Request $request){
+        $allData = $request->all();
+        dd($allData);
         return view('clients/category/add');
     }
     // Xóa dữ liệu bằng pt delete
     public function deleteCategory($id){
-
     }
 
 }
