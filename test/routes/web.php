@@ -19,7 +19,7 @@ use App\Http\Controllers\HomeController;
 |
 */
 // client route
-Route::get('/', [HomeController::class,'index'])->name('home')->middleware('auth.admin');
+Route::get('/', [HomeController::class,'index'])->name('home');
 Route::prefix('category')->group(function () {
     // Danh sách chuyên mục
     Route::get('/', [CategoryController::class, 'index'])->name('category.list');
@@ -33,6 +33,9 @@ Route::prefix('category')->group(function () {
     Route::post('/add', [CategoryController::class, 'showCategory']);
 
     Route::delete('/delete/{id}', [CategoryController::class, 'deleteCategory']);
+
+    Route::post("/upload", [CategoryController::class, 'Handlefile'])->name('category.file');
+    Route::get("/upload", [CategoryController::class, 'getFile']);
 });
 
 Route::middleware('autho.admin')->prefix('admin')->group(function () {
