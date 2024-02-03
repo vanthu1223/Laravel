@@ -91,6 +91,12 @@ class CategoryController extends Controller
        // $file = $request->file();
        
         // dd($file);
+        if ($request->hasFile('photo')){
+            $file = $request->file();
+        }
+        else{
+            return "chọn file";
+        }
     }
 
 }
