@@ -1,22 +1,11 @@
 <h1>Trang chủ unicode</h1>
-<h2>
-{{
-request()->keyword;
-}}
-</h2>
-<div>
-    {!!$content!!}
-</div>
-@for ($i = 1;$i<=10;$i++)
-<p>Phần tử thứ :{{$i}}</p>
-@endfor
-<!-- 
-@while ($index<=10)
-    <p>Phần thử thứ : {{$index}}</p>
-    @php
-    $index++
-    @endphp
-@endwhile -->
+<h2>{{!empty(request()->keyword)?request()->keyword:'Không có gì'}}</h2>
+@php 
+$number = 10;
+$total = $number +20;
+@endphp
+<h3>Kết quả {{$total}}</h3>
 
-@if($number>=10)
-<p>Giá trị đúng </p>
+<!--  -->
+
+
