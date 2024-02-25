@@ -11,16 +11,10 @@
 
 @section ('content')
 <h1> Trang chủ </h1>
-@datatime('2022-12-03 15:00:00')
-@datatime("2022-12-06 15:00:00")
-@env(production')
-<p>Môi trường production </p>
-@elseenv('test')
-<p>Không phải mt test</p>
-@else 
-<p>Không phải dev</p>
-@endenv
+<x-alert type="info" :content="$message" data-icon="youtube"/>
+<!-- <x-inputs.button/>
 
+<x-forms.button /> -->
 @endsection
 
 @section ('css')
