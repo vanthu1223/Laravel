@@ -10,9 +10,10 @@ class HomeController extends Controller
     public $data =[];
     public function index(){
         $this->data['title']= 'Lập trình tại unicode';
+        $this->data['message'] = "Đăng ký tài khoản thành công";
         return view('client.home',$this->data);
     }
-    public function product(){
+    public function products(){
         $this->data['title'] = 'Sản phẩm';
         return view('client.products',$this->data);
     }
