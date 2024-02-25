@@ -7,24 +7,38 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     //
-    public $data =[];
-    public function index(){
-        $this->data['title']= 'Lập trình tại unicode';
+    public $data = [];
+    public function index()
+    {
+        $this->data['title'] = 'Lập trình tại unicode';
         $this->data['message'] = "Đăng ký tài khoản thành công";
-        return view('client.home',$this->data);
+        return view('client.home', $this->data);
     }
-    public function products(){
+    public function products()
+    {
         $this->data['title'] = 'Sản phẩm';
-        return view('client.products',$this->data);
+        return view('client.products', $this->data);
     }
-    public function getAdd(){
+    public function getAdd()
+    {
         $this->data['title'] = 'Thêm sản phẩm';
-        return view('client.add',$this->data);
+        return view('client.add', $this->data);
     }
-    public function postAdd(Request $request){
+    public function postAdd(Request $request)
+    {
         dd($request);
     }
-    public function putAdd(Request $request){
+    public function putAdd(Request $request)
+    {
         dd($request);
+    }
+    public function getArray()
+    {
+        $contentArray = [
+            'name' => 'Laravel 8.x',
+            'lesson' => 'Khóa học lập trình',
+            'academy' => 'unicode âcdemy'
+        ];
+        return $contentArray;
     }
 }
