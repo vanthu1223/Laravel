@@ -7,6 +7,9 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\HomeController;
+use Illuminate\Http\Response;
+use Illuminate\Mail\Mailables\Content;
+use PhpParser\Node\Stmt\Return_;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,3 +51,13 @@ Route::get('/sanpham', [HomeController::class, 'products'])->name('products');
 Route::get('/them-san-pham', [HomeController::class, 'getAdd']);
 //Route::post('/them-san-pham',[HomeController::class,'postAdd']);
 Route::put('/them-san-pham', [HomeController::class, 'putAdd']);
+
+
+Route::get('lay-thong-tin', [HomeController::class, 'getArray']);
+Route::get('/demo-response', function () {
+    //return view('client.demo-test');
+    $response = response()->view('client.demo-test',[
+        'title' => 'Học Http tại Unicode'
+    ],201)->header('Content-Type','application/json');
+    return  $response; 
+});
