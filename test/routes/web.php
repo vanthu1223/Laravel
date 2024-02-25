@@ -66,3 +66,4 @@ Route::post('demo-response',function(Request $request){
     };
      return  redirect(route('demo-response'))->with('mess','validate không thành công');
 });
+Route::get('download-image/{link}',[HomeController::class, 'downloadImg'])->name('downImg');
