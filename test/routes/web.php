@@ -55,9 +55,14 @@ Route::put('/them-san-pham', [HomeController::class, 'putAdd']);
 
 Route::get('lay-thong-tin', [HomeController::class, 'getArray']);
 Route::get('/demo-response', function () {
-    //return view('client.demo-test');
-    $response = response()->view('client.demo-test',[
-        'title' => 'Học Http tại Unicode'
-    ],201)->header('Content-Type','application/json');
-    return  $response; 
+
+  return view('client.demo-test');
+
+})->name('demo-response');
+Route::post('demo-response',function(Request $request){
+    if(!empty($request->username)){
+
+         return back()->withInput()->with('mess','validate không thành công');
+    };
+     return  redirect(route('demo-response'))->with('mess','validate không thành công');
 });
