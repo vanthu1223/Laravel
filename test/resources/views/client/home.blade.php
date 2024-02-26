@@ -10,6 +10,11 @@
 @endsection
 
 @section ('content')
+@if (session('msg'))
+    <div class="alert alert-{session('type')}}">
+        {{session('msg')}}
+    </div>
+@endif
 <h1> Trang chủ </h1>
 <x-alert type="info" :content="$message" data-icon="youtube" />
 <!-- <x-inputs.button/>
