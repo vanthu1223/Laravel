@@ -4,13 +4,17 @@
 @endsection
 
 @section ('sidebar')
-    @parent
+@parent
 <h3>Product Sidebar</h3>
 @endsection
 
 @section('content')
+@if(session('msg'))
+<div class='alert alert-success text-center'>
+    session('msg')
+</div>
+@endif
 <h1>Sản phẩm</h1>
-<x-package-alert></x-package-alert>
 @push('scripts')
 <script>
     console.log('push 2')
