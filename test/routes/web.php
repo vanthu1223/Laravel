@@ -7,6 +7,10 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MyOontroller;
+use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\MyController;
 use Illuminate\Http\Response;
 use Illuminate\Mail\Mailables\Content;
 use PhpParser\Node\Stmt\Return_;
@@ -49,7 +53,7 @@ use PhpParser\Node\Stmt\Return_;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/sanpham', [HomeController::class, 'products'])->name('products');
 Route::get('/them-san-pham', [HomeController::class, 'getAdd']);
-//Route::post('/them-san-pham',[HomeController::class,'postAdd']);
+Route::post('/them-san-pham',[HomeController::class,'postAdd']);
 Route::put('/them-san-pham', [HomeController::class, 'putAdd']);
 
 
@@ -67,3 +71,9 @@ Route::post('demo-response',function(Request $request){
      return  redirect(route('demo-response'))->with('mess','validate không thành công');
 });
 Route::get('download-image/{link}',[HomeController::class, 'downloadImg'])->name('downImg');
+
+Route::get('/xin-chao',[UserController::class,'xinchao']);
+
+Route::resource('photos', PhotoController::class);
+
+Route::resource('my', MyController::class);

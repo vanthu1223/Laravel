@@ -22,11 +22,24 @@ class HomeController extends Controller
     public function getAdd()
     {
         $this->data['title'] = 'Thêm sản phẩm';
+        $this->data['errorMessage'] = 'Vui lòng nhập thông tin  ';
         return view('client.add', $this->data);
     }
     public function postAdd(Request $request)
     {
-        dd($request);
+        $rules = [
+            'product_name' => 'required|min:6',
+            'product_price' => 'required|integer'
+        ];
+        $message = [
+            'product_name.required' => 'Tên sản phẩm bắt buộc phải nhập',
+            'product_name.min' => 'Tên sản phẩm không được nhỏ hơn :min ký tự',
+            'product_price.required' => 'giá sản phẩm bắt buộc phải nhập',
+            'product_name.integer' => 'Giá sản phẩm phải là số'
+        ];
+        $request->validate($rules,$message);
+        // Xử lý việc thêm dữ liệu vào database
+
     }
     public function putAdd(Request $request)
     {
@@ -41,15 +54,16 @@ class HomeController extends Controller
         ];
         return $contentArray;
     }
-    public function downloadImg(Request $request){
-        if(!empty($request->image)){
-            $fileName = 'image_'.uniqid().'jpg';
-            
+    public function downloadImg(Request $request)
+    {
+        if (!empty($request->image)) {
+            $fileName = 'image_' . uniqid() . 'jpg';
+
             $image = trim($request->image);
-            return response()->streamDownload(function() use ($image){
+            return response()->streamDownload(function () use ($image) {
                 $imageContent = file_get_contents($image);
                 echo $imageContent;
-            },$fileName);
+            }, $fileName);
         }
     }
 }
