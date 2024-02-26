@@ -12,7 +12,7 @@
     @endif
     <div class="mb-3">
         <label for="">Tên sản phẩm</label>
-        <input type="text" class="form-control" name="product_name" placeholder="tên sản phẩm...">
+        <input type="text" class="form-control" name="product_name" placeholder="tên sản phẩm..." value="{{old('product_name')}}">
         @error('product_name')
         <span style="color:red;">
             {{$message}}
@@ -21,7 +21,7 @@
     </div>
     <div class="mb-3">
         <label for="">Giá sản phẩm</label>
-        <input type="text" class="form-control" name="product_price" placeholder="giá sản phẩm...">
+        <input type="text" class="form-control" name="product_price" placeholder="giá sản phẩm..." value="{{old('product_price')}}">
         @error('product_price')
         <span style="color:red;">
             {{$message}}

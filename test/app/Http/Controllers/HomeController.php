@@ -27,15 +27,17 @@ class HomeController extends Controller
     }
     public function postAdd(Request $request)
     {
-        $request->validate([
+        $rules = [
             'product_name' => 'required|min:6',
-            'produc_price' => 'required|integer'
-        ], [
+            'product_price' => 'required|integer'
+        ];
+        $message = [
             'product_name.required' => 'Tên sản phẩm bắt buộc phải nhập',
             'product_name.min' => 'Tên sản phẩm không được nhỏ hơn :min ký tự',
             'product_price.required' => 'giá sản phẩm bắt buộc phải nhập',
             'product_name.integer' => 'Giá sản phẩm phải là số'
-        ]);
+        ];
+        $request->validate($rules,$message);
         // Xử lý việc thêm dữ liệu vào database
 
     }
