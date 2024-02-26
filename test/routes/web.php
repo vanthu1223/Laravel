@@ -49,7 +49,7 @@ use PhpParser\Node\Stmt\Return_;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/sanpham', [HomeController::class, 'products'])->name('products');
 Route::get('/them-san-pham', [HomeController::class, 'getAdd']);
-//Route::post('/them-san-pham',[HomeController::class,'postAdd']);
+Route::post('/them-san-pham',[HomeController::class,'postAdd']);
 Route::put('/them-san-pham', [HomeController::class, 'putAdd']);
 
 
