@@ -72,8 +72,6 @@ Route::post('demo-response',function(Request $request){
 });
 Route::get('download-image/{link}',[HomeController::class, 'downloadImg'])->name('downImg');
 
-Route::get('/xin-chao',[UserController::class,'xinchao']);
-
-
-
-Route::resource('my', MyController::class);
+Route::prefix('/users')->group(function(){
+     Route::get('/',[UserController::class,'index']);
+});

@@ -7,6 +7,7 @@ use App\Http\Requests\ProductRequest;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Validator;
 use App\Rules\Uppercase;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -16,6 +17,12 @@ class HomeController extends Controller
     {
         $this->data['title'] = 'Lập trình tại unicode';
         $this->data['message'] = "Đăng ký tài khoản thành công";
+
+        // $users =  DB::select('SELECT  * from users where email=:email',[
+        //     'email' => 'thu.vo@gmail.com'
+        // ]);
+        // dd($users);
+        
         return view('client.home', $this->data);
     }
     public function products()
@@ -53,9 +60,9 @@ class HomeController extends Controller
         ];
         // $validator =  Validator::make($request->all(), $rules, $message, $attribute);
         // $validator->validate();
-       // $request->validate($rules,$message);
+        // $request->validate($rules,$message);
 
-        return response()->json(['status'=>'success']);
+        return response()->json(['status' => 'success']);
 
         // $validator->validate();
         // if ($validator->fails()) {
