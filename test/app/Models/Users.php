@@ -38,23 +38,23 @@ class Users extends Model
         $id = 20;
         // $lists = DB::table($this->table)
         //     ->select('fullname', 'email','update_at','create_at')
-            // ->where('id',2)
-            // ->where(function($query) use ($id){
-            //     $query->where('id', '<',$id)->orWhere('id','>',$id);
-            //     $query->orWhere('id','>',$id);
-            // })
-            // ->where('fullname','like','%Vân Thư%')
-            //    ->whereBetween('id',[1,4])
-            // ->whereIn('id',[1,4])
-            // ->whereDate('update','2023-03-02')
-            // ->whereMonth('create_at','02')
-            // ->whereDay('create_at','18')
-               // ->whereColumn('create_at','>','update_at'
+        // ->where('id',2)
+        // ->where(function($query) use ($id){
+        //     $query->where('id', '<',$id)->orWhere('id','>',$id);
+        //     $query->orWhere('id','>',$id);
+        // })
+        // ->where('fullname','like','%Vân Thư%')
+        //    ->whereBetween('id',[1,4])
+        // ->whereIn('id',[1,4])
+        // ->whereDate('update','2023-03-02')
+        // ->whereMonth('create_at','02')
+        // ->whereDay('create_at','18')
+        // ->whereColumn('create_at','>','update_at'
         //     ->get();
-          //Join 2 bảng lại với nhau
-       $lists =  DB::table('users')
-       ->select('users.*','groups.name as group_name')
-        ->join('groups','users.group_id', '=', 'groups.id');
+        //Join 2 bảng lại với nhau
+        $lists =  DB::table('users')
+            ->select('users.*', 'groups.name as group_name')
+            ->rightJoin('groups', 'users.group_id', '=', 'groups.id');
         $sql = DB::getQueryLog();
         dd($sql);
         // Lấy 1 bản ghi đầu tiên của table lấy thông tin chi tiết
