@@ -16,5 +16,11 @@ class Post extends Model
 
     //public $incrementing = false;
     //protected $keyType = 'string';
-    public $timestamps = false;
+    public $timestamps = true;
+
+    const CREATED_AT = 'create_at';
+    const UPDATE_AT =  'update_at';
+    protected $attributes = [
+        'status' => 0
+    ];
 }
